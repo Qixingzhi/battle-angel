@@ -25,7 +25,6 @@ Battle Angel
 5、服务端（可供下载的）的vue代码中的store，会默认加载db中的componentList，从而达到保存的效果。
 
 ### 组件删除功能的实现
-&nbsp;&nbsp;  
 1、点击iframe中组件的删除按钮，发送postMessage事件——"deleteComponentById"，携带组件id，group。
 &nbsp;&nbsp;  
 2、操作台接收到事件后，弹窗确认是否删除，确认后删除store中componentProps对象里的对应项、判断store中当前editId与要删除的组件id是否一致，如果是，置空editId、向iframe发送postMessage事件——"deleteThisComponent"，携带参数id, group。
