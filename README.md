@@ -20,9 +20,17 @@ Battle Angel
 &nbsp;&nbsp;  
 3、iframe接收到事件后，向操作台发送postMessage事件——"returnComList"，携带vuex中保存的componentList数组。
 &nbsp;&nbsp;  
-4、操作台接收到时间后，会去调用save接口，传给服务器componentList，服务器会写入db文件夹中。
+4、操作台接收到事件后，会去调用save接口，传给服务器componentList，服务器会写入db文件夹中。
 &nbsp;&nbsp;  
 5、服务端（可供下载的）的vue代码中的store，会默认加载db中的componentList，从而达到保存的效果。
+
+### 组件删除功能的实现
+&nbsp;&nbsp;  
+1、点击iframe中组件的删除按钮，发送postMessage事件——"deleteComponentById"，携带组件id，group。
+&nbsp;&nbsp;  
+2、操作台接收到事件后，弹窗确认是否删除，确认后删除store中componentProps对象里的对应项、判断store中当前editId与要删除的组件id是否一致，如果是，置空editId、向iframe发送postMessage事件——"deleteThisComponent"，携带参数id, group。
+&nbsp;&nbsp;  
+3、iframe接收到事件后，调用mutation--deleteComponentById，删除iframe的store中对应组件。
 
 ### 组件参数回显功能的实现
 首先，回显功能的含义是什么？在此应用中，有两层。
